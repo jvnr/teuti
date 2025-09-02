@@ -9,6 +9,9 @@
     <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
@@ -29,7 +32,6 @@
             box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
             z-index: 100;
             transition: transform 0.3s ease;
-
         }
         .whatsapp-float:hover {
             transform: scale(1.1);
@@ -69,7 +71,7 @@
         <div class="container mx-auto">
             <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight">Sua Tecnologia, Nossa Solução.</h1>
             <p class="text-xl md:text-2xl mb-8 opacity-90">Simplificamos a TI para você focar no que realmente importa.</p>
-            <a href="https://wa.me/555190654281?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20Teu%20T.I" class="bg-white text-blue-700 hover:bg-blue-100 font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
+            <a href="#contato" class="bg-white text-blue-700 hover:bg-blue-100 font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
                 Obtenha uma Cotação Gratuita
             </a>
         </div>
@@ -89,7 +91,7 @@
     </section>
 
     <!-- Services Section -->
-  <section id="servicos" class="py-16 px-6 bg-blue-50">
+    <section id="servicos" class="py-16 px-6 bg-blue-50">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center mb-12 text-blue-700">Nossos Serviços</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -117,10 +119,59 @@
                     <h3 class="text-2xl font-semibold mb-4 text-gray-900">Integração de Softwares</h3>
                     <p class="text-gray-700">Conectamos diferentes softwares e plataformas para que eles trabalhem juntos, otimizando fluxos de trabalho e evitando retrabalho.</p>
                 </div>
+                 <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-indigo-500 transform hover:-translate-y-2 transition-transform duration-300">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Dashboards & BI</h3>
+                    <p class="text-gray-700">Criação de dashboards interativos para visualização de dados, monitoramento de KPIs e suporte à tomada de decisão estratégica.</p>
+                </div>
             </div>
         </div>
     </section>
+
     <!-- Problem Description & Contact Section -->
+    <section id="contato" class="py-16 px-6 bg-gray-100">
+        <div class="container mx-auto max-w-3xl">
+            <h2 class="text-4xl font-bold text-center mb-12 text-blue-700">Fale Conosco</h2>
+            <div class="bg-white p-8 md:p-12 rounded-xl shadow-lg border-t-4 border-blue-500">
+                <p class="text-lg text-gray-700 mb-6 text-center">
+                    Tem um problema de TI? Explique sua situação abaixo e entraremos em contato para uma cotação e ver como podemos ajudar.
+                </p>
+
+                <!-- 
+                  IMPORTANT: To make this form work, create a free account at https://formspree.io/
+                  and replace 'YOUR_UNIQUE_FORM_ID' with your own form ID.
+                -->
+                <form id="contact-form" action="https://formspree.io/f/xpwjjgdy" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Seu Nome Completo</label>
+                        <input type="text" id="name" name="name" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Seu Melhor E-mail</label>
+                        <input type="email" id="email" name="email" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Telefone (Opcional)</label>
+                        <input type="tel" id="phone" name="phone"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                    </div>
+                    <div>
+                        <label for="problem" class="block text-sm font-medium text-gray-700 mb-1">Descreva seu Problema de TI ou Necessidade</label>
+                        <textarea id="problem" name="problem" rows="6" required
+                                  class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 resize-y"></textarea>
+                    </div>
+                    <div class="text-center space-y-4">
+                        <button id="submit-button" type="submit"
+                                class="w-full md:w-auto bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            Enviar Mensagem e Solicitar Cotação
+                        </button>
+                        <div id="form-status" class="mt-4 text-center font-medium"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
     
     <!-- Footer Section -->
     <footer class="bg-blue-800 text-white py-8 px-6">
@@ -131,14 +182,15 @@
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/555190654281?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20Teu%20T.I." class="whatsapp-float" target="_blank" aria-label="Fale Conosco pelo WhatsApp">
+    <a href="https://wa.me/5551999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20Teu%20T.I." class="whatsapp-float" target="_blank" aria-label="Fale Conosco pelo WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
             <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
         </svg>
     </a>
 
-    <!-- Script for Mobile Menu Toggle -->
+    <!-- Scripts -->
     <script>
+        // --- Mobile Menu Toggle ---
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
             var menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
@@ -150,6 +202,52 @@
                 document.getElementById('mobile-menu').classList.add('hidden');
             });
         });
+
+        // --- Form Submission with Formspree ---
+        var form = document.getElementById("contact-form");
+        var status = document.getElementById("form-status");
+        var submitButton = document.getElementById("submit-button");
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            var data = new FormData(event.target);
+            
+            submitButton.disabled = true;
+            submitButton.innerText = 'Enviando...';
+            status.innerHTML = '';
+            status.classList.remove('text-green-600', 'text-red-600');
+
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    status.innerHTML = "Obrigado! Sua mensagem foi enviada com sucesso.";
+                    status.classList.add('text-green-600');
+                    form.reset();
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+                        } else {
+                            status.innerHTML = "Oops! Ocorreu um erro ao enviar sua mensagem."
+                        }
+                        status.classList.add('text-red-600');
+                    })
+                }
+            }).catch(error => {
+                status.innerHTML = "Oops! Ocorreu um erro de rede. Tente novamente."
+                status.classList.add('text-red-600');
+            }).finally(() => {
+                submitButton.disabled = false;
+                submitButton.innerText = 'Enviar Mensagem e Solicitar Cotação';
+            });
+        }
+        form.addEventListener("submit", handleSubmit)
     </script>
 </body>
 </html>
+
