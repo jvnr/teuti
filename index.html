@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teu T.I - Soluções em Tecnologia</title>
+    <title>v2Teu T.I - Soluções em Tecnologia</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter -->
@@ -190,63 +190,68 @@
 
     <!-- Scripts -->
     <script>
-        // --- Mobile Menu Toggle ---
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            var menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('#mobile-menu a').forEach(function(link) {
-            link.addEventListener('click', function() {
-                document.getElementById('mobile-menu').classList.add('hidden');
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Mobile Menu Toggle ---
+            document.getElementById('mobile-menu-button').addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
             });
-        });
 
-        // --- Form Submission with Formspree ---
-        var form = document.getElementById("contact-form");
-        var status = document.getElementById("form-status");
-        var submitButton = document.getElementById("submit-button");
+            document.querySelectorAll('#mobile-menu a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
+            });
 
-        async function handleSubmit(event) {
-            event.preventDefault();
-            var data = new FormData(event.target);
+            // --- Form Submission with Formspree ---
+            const form = document.getElementById("contact-form");
             
-            submitButton.disabled = true;
-            submitButton.innerText = 'Enviando...';
-            status.innerHTML = '';
-            status.classList.remove('text-green-600', 'text-red-600');
+            async function handleSubmit(event) {
+                event.preventDefault();
+                
+                // Get elements inside the handler to ensure they exist
+                const status = document.getElementById("form-status");
+                const submitButton = document.getElementById("submit-button");
+                const data = new FormData(event.target);
+                
+                submitButton.disabled = true;
+                submitButton.innerText = 'Enviando...';
+                status.innerHTML = '';
+                status.classList.remove('text-green-600', 'text-red-600');
 
-            fetch(event.target.action, {
-                method: form.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    status.innerHTML = "Obrigado! Sua mensagem foi enviada com sucesso.";
-                    status.classList.add('text-green-600');
-                    form.reset();
-                } else {
-                    response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
-                        } else {
-                            status.innerHTML = "Oops! Ocorreu um erro ao enviar sua mensagem."
-                        }
-                        status.classList.add('text-red-600');
-                    })
-                }
-            }).catch(error => {
-                status.innerHTML = "Oops! Ocorreu um erro de rede. Tente novamente."
-                status.classList.add('text-red-600');
-            }).finally(() => {
-                submitButton.disabled = false;
-                submitButton.innerText = 'Enviar Mensagem e Solicitar Cotação';
-            });
-        }
-        form.addEventListener("submit", handleSubmit)
+                fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        status.innerHTML = "Obrigado! Sua mensagem foi enviada com sucesso.";
+                        status.classList.add('text-green-600');
+                        form.reset();
+                    } else {
+                        response.json().then(data => {
+                            if (Object.hasOwn(data, 'errors')) {
+                                status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+                            } else {
+                                status.innerHTML = "Oops! Ocorreu um erro ao enviar sua mensagem."
+                            }
+                            status.classList.add('text-red-600');
+                        })
+                    }
+                }).catch(error => {
+                    status.innerHTML = "Oops! Ocorreu um erro de rede. Tente novamente."
+                    status.classList.add('text-red-600');
+                }).finally(() => {
+                    submitButton.disabled = false;
+                    submitButton.innerText = 'Enviar Mensagem e Solicitar Cotação';
+                });
+            }
+            
+            if (form) {
+                form.addEventListener("submit", handleSubmit)
+            }
+        });
     </script>
 </body>
 </html>
